@@ -27,6 +27,16 @@ app.post('/addUsers', function(req,res){
   });
 })
 
+app.get('/:id',function(req,res){
+  fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err, data){
+    if(err) throw err;
+    let users = JSON.parse(data);
+    let user = users["user" + req.params.id];
+    console.log("User Info by id" + JSON.stringify(user));
+    res.send(JSON.stringify(data));
+  });
+})
+
 let server = app.listen(8081,function(){
   let host = server.address().address
   let port = server.address().port
