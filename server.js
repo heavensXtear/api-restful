@@ -2,6 +2,15 @@ const express = require('express');
 const app = express();
 const fs = require("fs");
 
+let user = {
+  "user4" : {
+    "name" : "password4",
+    "profession" : "teacher",
+    "id" : 4
+  }
+}
+
+
 app.get('/listUsers',function(req,res){
   fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err, data){
     console.log(data);
@@ -9,6 +18,14 @@ app.get('/listUsers',function(req,res){
   });
 })
 
+app.post('/addUsers', function(req,res){
+  fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err, data){
+    data = JSON.parse(data);
+    data["user4"] = user["user4"];
+    console.log(data);
+    res.send(JSON.stringify(data));
+  });
+})
 
 let server = app.listen(8081,function(){
   let host = server.address().address
