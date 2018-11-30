@@ -33,7 +33,7 @@ app.get('/:id',function(req,res){
     let users = JSON.parse(data);
     let user = users["user" + req.params.id];
     console.log("User Info by id" + JSON.stringify(user));
-    res.send(JSON.stringify(data));
+    res.send(JSON.stringify(user));
   });
 })
 
