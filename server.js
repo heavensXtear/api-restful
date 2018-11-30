@@ -37,6 +37,15 @@ app.get('/:id',function(req,res){
   });
 })
 
+app.delete('/deleteUser',function(req,res){
+  fs.readFile(__dirname + "/" + "users.json", 'utf8', function (err, data){
+    data =JSON.parse(data);
+    delete data["user" + 2];
+    console.log("delete user" + data);
+    res.send(JSON.stringify(data));
+  });
+})
+
 let server = app.listen(8081,function(){
   let host = server.address().address
   let port = server.address().port
